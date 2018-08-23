@@ -10,7 +10,16 @@ let html_sixth_throw = document.getElementById("sixth_throw");
 let html_zhou_yi = document.getElementById("zhou_yi");
 let html_zhou_yi_reverse = document.getElementById("zhou_yi_reverse");
 
-// DEFINE REFERENCE OBJECT
+
+// JQUERY VERSION:
+
+let html_header = $("#begin_here");
+let html_throw_button = $("#throw");
+let html_throw_results = $("#throw_results");
+let html_hexagram = $("#hexagram");
+let html_sec_hex = $("#second_hex");
+
+// DEFINE REFERENCE OBJECT - This is where I can store the values to search through once the logic is taking shape.
 
 let iChing = {
     first_yao: iChing.yaoThrow(),
@@ -29,8 +38,14 @@ let iChing = {
         sixth_yao
     ],
 
-
 }
+
+// OPERATION FLOW:
+
+html_throw_button.on("click", function throw() {
+    
+})
+
 
 // DEFINE GENERATOR FUNCTIONS
 
