@@ -40,33 +40,46 @@ let html_sec_hex = $("#second_hex");
 
 // }
 
-// OPERATION FLOW:
+// THE HEXAGRAM OBJECT CONTAINS AN ARRAY OF MYTHROW OBJECTS. 
+// THE HEXAGRAM OBJECT HAS A FUNCTION THAT CALLS THE MYTHROW CONSTRUCTOR 6 TIMES
 
-let myThrow = {
+let myThrow = { // THIS IS AN OBJECT TO SET EACH UNIQUE THROW, AND WILL BUILD AN ARRAY OF OBJECTS IN THE HEXAGRAM OBJECT
     coinState: [], // 0 is heads, 1 is tails
-    oddEven: "odd", //used to determine solid or broken line
-    ptTotal: 6,
-    bonus: true,
+    line: "odd", //used to determine solid or broken line
+    ptTotal: 0,
+    bonus: false,
     order: 1,
 
     coinToss: function () {
         let toss = [];
-        let oddEVen, bonus;
         let ptTotalCalc = 0;
-        // sets a 3 value array
-
+    // sets a 3 value array
         for (let i = 0; i < 3; i++) {
             toss.push(Math.floor(Math.random()*2));
             console.log(toss);
         }
         this.coinState = toss;
-        // calcuates and sets pt total
+    // calcuates and sets pt total
         toss.forEach(i => {
             if (i === 0) {
                 ptTotalCalc+=2;
             } else {ptTotalCalc+=3}
         });
-        console.log("point total: " + ptTotalCalc)
+        console.log("point total: " + ptTotalCalc);
+        this.ptTotal = ptTotalCalc;
+    // sets broken or unbroken line status
+        if (this.ptTotal % 2 == 0) {
+            this.line = "unbroken";
+        } else {this.line = "broken"}
+    // Checks for a special status if total it 6 or 9
+        if (ptTotalCalc === 6 || ptTotalCalc === 9) {
+            this.bonus = true;
+        } else {this.bonus = false}
+
+        console.log("coinstate: " + this.coinState);
+        console.log("line: " + this.line);
+        console.log("ptTotal: " + this.ptTotal);
+        console.log("bonus: " + this.bonus);
     }
 }
 
