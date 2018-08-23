@@ -21,30 +21,73 @@ let html_sec_hex = $("#second_hex");
 
 // DEFINE REFERENCE OBJECT - This is where I can store the values to search through once the logic is taking shape.
 
-let iChing = {
-    first_yao: iChing.yaoThrow(),
-    second_yao: iChing.yaoThrow(),
-    third_yao: iChing.yaoThrow(),
-    fourth_yao: iChing.yaoThrow(),
-    fifth_yao: iChing.yaoThrow(),
-    sixth_yao: iChing.yaoThrow(),
+// let iChing = {
+//     first_yao: this.yaoThrow(),
+//     second_yao: this.yaoThrow(),
+//     third_yao: this.yaoThrow(),
+//     fourth_yao: this.yaoThrow(),
+//     fifth_yao: this.yaoThrow(),
+//     sixth_yao: this.yaoThrow(),
 
-    zhou_yi: [
-        first_yao,
-        second_yao,
-        third_yao,
-        fourth_yao,
-        fifth_yao,
-        sixth_yao
-    ],
+//     zhou_yi: [
+//         first_yao,
+//         second_yao,
+//         third_yao,
+//         fourth_yao,
+//         fifth_yao,
+//         sixth_yao
+//     ],
 
-}
+// }
 
 // OPERATION FLOW:
 
-html_throw_button.on("click", function throw() {
+let myThrow = {
+    coinState: [], // 0 is heads, 1 is tails
+    oddEven: "odd", //used to determine solid or broken line
+    ptTotal: 6,
+    bonus: true,
+    order: 1,
+
+    coinToss: function () {
+        let toss = [];
+        let oddEVen, bonus;
+        let ptTotalCalc = 0;
+        // sets a 3 value array
+
+        for (let i = 0; i < 3; i++) {
+            toss.push(Math.floor(Math.random()*2));
+            console.log(toss);
+        }
+        this.coinState = toss;
+        // calcuates and sets pt total
+        toss.forEach(i => {
+            if (i === 0) {
+                ptTotalCalc+=2;
+            } else {ptTotalCalc+=3}
+        });
+        console.log("point total: " + ptTotalCalc)
+    }
+}
+
+
+$(document).ready(function () {
     
-})
+    $("#throw").on("click", function() {
+        myThrow.coinToss();
+        // This function needs to do a few things:
+        // 1. it must cast 3 coinFlip() functions that return a heads/tails and a 2 or 3 value
+        // 2. it must tally the total value of 2 and 3 pt values from the 3 coin flips.
+        // 3. it must record odd or even
+        // 4. it must capture the special states of pt total 6 or 9
+        // 5. it must output 
+        // a. h/t visual cues for the 3 coin images
+        // b. total pts ---> odd or even ---> broken or unbroken line
+        // c. "special line" state for this throw
+        // This may be best served as an object constructor
+    })    
+
+});
 
 
 // DEFINE GENERATOR FUNCTIONS
